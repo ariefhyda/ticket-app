@@ -25,16 +25,23 @@
                                     <li><a href="{{url('/')}}#section-schedule">Schedule</a></li>             
                                     <li><a href="{{url('/')}}#section-tickets">Tickets</a></li>
                                     <li><a href="{{url('/')}}#section-gallery">Gallery</a></li> 
-                                    
-                                    @if(Session::has('is_admin'))                                              
-                                    <li><a href="{{url('/admin/scan')}}">Scan</a></li>                        
-                                    <li><a href="{{url('/admin/users')}}">Users</a></li>            
-                                    <li><a href="{{url('/admin/ticket')}}">Ticket</a></li>          
-                                    <li><a href="{{url('/admin/payment_confirmation')}}">Payment Confirmation</a></li> 
-                                    <li><a href="{{url('/auth/logout')}}">Logout</a></li> 
-                                    @else
+                                    @if(Session::has('login')!=true) 
+                                    <li><a href="{{url('/auth')}}">Sign In</a></li> 
+                                    @endif
+                                    @if(Session::has('is_admin'))  
+                                    <li><a href="#">Admin Menu</a>
+                                    <ul>
+                                        <li><a href="{{url('/admin/scan')}}">Scan</a></li>                        
+                                        <li><a href="{{url('/admin/users')}}">Users</a></li>            
+                                        <li><a href="{{url('/admin/ticket')}}">Ticket</a></li>          
+                                        <li><a href="{{url('/admin/payment-verification')}}">Payment Verification</a></li> 
+                                        <li><a href="{{url('/auth/logout')}}">Logout</a></li> 
+
+                                    </ul>                                        
+                                    </li>                                             
+                                    @elseif(Session::has('is_user')) 
                                     <li><a href="{{url('/my-ticket')}}">My Ticket</a></li> 
-                                    <li><a href="{{url('/payment-confirmation')}}">Payment Confirmation</a></li> 
+                                    <li><a href="{{url('/payment-verification')}}">Payment Verification</a></li> 
                                     <li><a href="{{url('/auth/logout')}}">Logout</a></li> 
                                     @endif
                                     

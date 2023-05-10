@@ -75,12 +75,8 @@
                     </div>
                 </form>
                 
-                <div id="success_message" class='success'>
-                    Your order has been sent, please wait for confirmation. Refresh this page if you want to order more tickets.
-                </div>
-                <div id="error_message" class='error'>
-                    Sorry there was an error sending your form.
-                </div>
+                <div id="success_message" class='success'></div>
+                <div id="error_message" class='error'></div>
                 
             </div>
         </div>
@@ -114,7 +110,7 @@ $("#form-ticket").submit(function(e){
                 $('#success_message').html(msg.message);
                 $('#success_message').show();
                 setTimeout(() => {
-                    window.location.href="{{url('/home')}}";
+                    window.location.href="{{url('/payment-verification')}}";
                 }, 2000);
             }else{
                 $('#success_message').hide();

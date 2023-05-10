@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('price');
             $table->string('total');
-            $table->string('proof_of_payment');
+            $table->string('proof_of_payment')->nullable();
             $table->boolean('payment_status')->default(false);
             $table->timestamps();
         });

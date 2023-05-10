@@ -27,6 +27,7 @@
     <!-- color scheme -->
     <link id="colors" href="{{asset('template')}}/css/scheme-03.css" rel="stylesheet" type="text/css" />
     <link href="{{asset('template')}}/css/coloring.css" rel="stylesheet" type="text/css" />
+    <link href="cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     @yield('css')
 </head>
 
@@ -73,9 +74,13 @@
     <script src="{{asset('template')}}/js/cookit.js"></script>    
     <script src="{{asset('template')}}/js/designesia.js"></script>
 
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js" "></script>
+  
+
 <!-- COOKIES PLUGIN  -->
      <script>
       $(document).ready(function() {
+        $('#myTable').DataTable();
         $.cookit({
           backgroundColor: '#0B168D',
           messageColor: '#ffffff',

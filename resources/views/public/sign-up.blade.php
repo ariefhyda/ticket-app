@@ -65,14 +65,15 @@
                                 <input type='submit' id='send_message' value='Submit Form' class="btn btn-main">
                             </p>
                         </div>
+                        <div class="col-md-12">
+                            <p> Do you have an account? <a href="/auth">SIGN IN</a></p>
+                        </div>
                     </div>
                 </form>
                 
                 <div id="success_message" class='success'>
-                    Your order has been sent, please wait for confirmation. Refresh this page if you want to order more tickets.
                 </div>
                 <div id="error_message" class='error'>
-                    Sorry there was an error sending your form.
                 </div>
                 
             </div>
@@ -83,6 +84,38 @@
 
 @section('js')
 <script>
+$("#form-signup").submit(function(e){
+    e.preventDefault();        
+    obj = formToObject($("#form-signup"));
+    
+    console.log(obj); 
+    
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/auth/signup",
+        data: {
+            data: JSON.stringify(obj),
+            _token: '<?php echo csrf_token() ?>'
+        },
+        success: function(msg){
+            console.log(msg); 
+            
+            if (msg.status) {
+                $('#error_message').hide();
+                $('#success_message').html(msg.message);
+                $('#success_message').show();
+                setTimeout(() => {
+                    window.location.href='/auth';
+                }, 2000);
+            }else{
+                $('#success_message').hide();
+                $('#error_message').html(msg.message);
+                $('#error_message').show();
+            }
+        }
+    });
+});
 
 </script>
 @endsection

@@ -46,6 +46,10 @@
                                 <input type='submit' id='send_message' value='Submit Form' class="btn btn-main">
                             </p>
                         </div>
+
+                        <div class="col-md-12">
+                            <p> Don't have an account? <a href="/auth/signup">SIGN UP</a></p>
+                        </div>
                     </div>
                 </form>
                 
@@ -84,7 +88,7 @@ $("#form-signin").submit(function(e){
                 $('#success_message').html(msg.message);
                 $('#success_message').show();
                 setTimeout(() => {
-                    window.location.href="{{url('/home')}}";
+                    window.location.href=msg.link;
                 }, 2000);
             }else{
                 $('#success_message').hide();

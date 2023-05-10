@@ -11,13 +11,35 @@ class Auth extends Controller
     public function index(Request $request)
     {
         if (Session::has('login')){
-            return redirect(url('/buy-ticket'));
+            if (Session::get('level')==1) {
+                return redirect(url('/admin/scan'));
+            }else{
+
+                return redirect(url('/my-ticket'));
+            }
           }
         return view('public.sign-in');
     }
 
-    public function sign_up(Request $request)
+    public function signup(Request $request)
     {
+        if ($request->ajax()) {
+            $req = json_decode($request->data);
+            $data=array(
+                'name'=>$req->name,
+                'phone'=>$req->phone,
+                'email'=>$req->email,
+                'level'=>'2',
+                'password'=> password_hash($req->password, PASSWORD_ARGON2ID),
+                'created_at' => date('Y-m-d H:i:s')
+            );
+            $insert = DB::table('users')->insertGetId($data);
+            if ($insert) {
+                return response()->json(['message'=>'Success creating user.','status'=>true], 200); 
+            }else{
+                return response()->json(['message'=>'Error! Something went wrong','status'=>false], 200); 
+            }
+        }
         return view('public.sign-up');
     }
 
@@ -34,7 +56,7 @@ class Auth extends Controller
                 $this->createSession($dt); 
                 $data['message'] = 'Login success! Have nice day :)';
                 $data['status'] = true;
-                if ($dt->level=='1') {
+                if ($dt->level==1) {
                     $data['link'] = url('/admin');
                 }else {
                     $data['link'] = url('/my-ticket');
@@ -62,10 +84,10 @@ class Auth extends Controller
         $session['phone'] = $dt->phone;
         $session['level'] = $dt->level;
         $session['login'] = true;
-        if ($dt->level=='1') {
-            $data['is_admin'] = true;
+        if ($dt->level==1) {
+            $session['is_admin'] = true;
         }else {
-            $data['is_user'] = true;
+            $session['is_user'] = true;
         }
         Session::put($session);
     }

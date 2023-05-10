@@ -64,39 +64,5 @@
     
 
 @section('js')
-<script>
-$("#form-signin").submit(function(e){
-    e.preventDefault();        
-    obj = formToObject($("#form-signin"));
-    
-    console.log(obj); 
-    
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "/auth/login",
-        data: {
-            data: JSON.stringify(obj),
-            _token: '<?php echo csrf_token() ?>'
-        },
-        success: function(msg){
-            console.log(msg); 
-            
-            if (msg.status) {
-                $('#error_message').hide();
-                $('#success_message').html(msg.message);
-                $('#success_message').show();
-                setTimeout(() => {
-                    window.location.href="{{url('/home')}}";
-                }, 2000);
-            }else{
-                $('#success_message').hide();
-                $('#error_message').html(msg.message);
-                $('#error_message').show();
-            }
-        }
-    });
-});
 
-</script>
 @endsection
