@@ -33,8 +33,8 @@
                                     <li><a href="{{url('/admin/payment_confirmation')}}">Payment Confirmation</a></li> 
                                     <li><a href="{{url('/auth/logout')}}">Logout</a></li> 
                                     @else
-                                    <li><a href="{{url('/my_ticket')}}">My Ticket</a></li> 
-                                    <li><a href="{{url('/payment_confirmation')}}">Payment Confirmation</a></li> 
+                                    <li><a href="{{url('/my-ticket')}}">My Ticket</a></li> 
+                                    <li><a href="{{url('/payment-confirmation')}}">Payment Confirmation</a></li> 
                                     <li><a href="{{url('/auth/logout')}}">Logout</a></li> 
                                     @endif
                                     

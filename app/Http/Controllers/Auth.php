@@ -37,7 +37,7 @@ class Auth extends Controller
                 if ($dt->level=='1') {
                     $data['link'] = url('/admin');
                 }else {
-                    $data['link'] = url('/my_ticket');
+                    $data['link'] = url('/my-ticket');
                 }
                 return response()->json($data, 200);             
             }else {            

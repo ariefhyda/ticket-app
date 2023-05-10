@@ -26,7 +26,9 @@ Route::group(['controller' => Auth::class,'prefix'=>'auth'], function () {
 });
 
 Route::group(['controller' => Users::class,'middleware'=>'isuser'], function () {
-    Route::get('/my_ticket', 'my_ticket');
+    Route::get('/my-ticket', 'my_ticket');
+    Route::get('/buy-ticket/{id}', 'buy_ticket');
+    Route::post('/buy-ticket/{id}', 'act_buy_ticket');
     Route::post('/payment_verification','payment_verification');
 });
 
