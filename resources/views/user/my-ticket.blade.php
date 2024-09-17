@@ -38,21 +38,15 @@
                     <div class="bottom">
                     <p>
                         @if($t->check_in)
-                        <span class="id-color"><i class="fas fa-check"></i></span> 
+                        <span class="id-color"><i class="fa fa-check"></i></span> 
                         @else                        
-                        <span class="id-color"><i class="fas fa-close"></i></span> 
+                        <span class="id-color"><i class="fa fa-close"></i></span> 
                         @endif
 
                         Checkin
                     </p>
                     </div>
-                    <div class="action text-center">
-                        @if(Session::has('login'))
-                        <a href="{{url('/buy-ticket/')}}" class="btn-main">Buy Ticket</a>
-                        @else
-                        <a href="{{url('/auth')}}" class="btn-main">Buy Ticket</a>
-                        @endif
-                    </div>
+                    
                 </div>
             </div>
             @endforeach
